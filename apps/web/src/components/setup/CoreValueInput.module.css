@@ -1,0 +1,102 @@
+.wrapper {
+    margin-bottom: var(--spacing-xl);
+    text-align: left;
+}
+
+.label {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text);
+}
+
+.inputContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    background: white;
+    border: 2px solid #E5E5E5;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-sm);
+    min-height: 56px;
+    align-items: center;
+    transition: border-color var(--transition-fast);
+}
+
+.inputContainer:focus-within {
+    border-color: var(--color-primary);
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.removeBtn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    opacity: 0.8;
+}
+
+.removeBtn:hover {
+    opacity: 1;
+}
+
+.input {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    flex: 1;
+    min-width: 120px;
+    padding: 4px;
+    background: transparent;
+    color: var(--color-text);
+}
+
+.addBtn {
+    background: var(--color-bg-subtle);
+    border: none;
+    border-radius: var(--radius-full);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--color-text-subtle);
+    margin-left: auto;
+}
+
+.addBtn:hover {
+    background: #E5E5E5;
+}
+
+.addBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

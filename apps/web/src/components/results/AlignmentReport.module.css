@@ -1,0 +1,179 @@
+.wrapper {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.heading {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.summarySection {
+    background: var(--color-bg-subtle);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-xl);
+    text-align: left;
+}
+
+.summaryText {
+    font-size: 1.1rem;
+    color: var(--color-text);
+}
+
+.championSection {
+    background: linear-gradient(135deg, #FFF9C4 0%, #FFF176 100%);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    animation: slideUp 0.5s ease;
+}
+
+.trophyIcon {
+    animation: bounce 2s infinite;
+}
+
+.championLabel {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #B7950B;
+    letter-spacing: 1px;
+}
+
+.championName {
+    font-size: 2rem;
+    margin: 4px 0;
+    color: #5D4037;
+}
+
+.championScore {
+    font-weight: 700;
+    color: #795548;
+}
+
+.statsSection {
+    text-align: left;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.card {
+    border: 2px solid #E5E5E5;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    background: white;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid #F5F5F5;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--color-bg-subtle);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--color-text-subtle);
+}
+
+.name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex: 1;
+}
+
+.totalXp {
+    font-weight: 800;
+    color: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.xpBars {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.barRow {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 0.9rem;
+}
+
+.barLabel {
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+    font-weight: 500;
+    color: var(--color-text-subtle);
+}
+
+.barTrack {
+    flex: 1;
+    height: 12px;
+    background: #F0F0F0;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.barFill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width 1s ease-out;
+}
+
+.barValue {
+    width: 30px;
+    font-weight: 700;
+    color: var(--color-text-subtle);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
