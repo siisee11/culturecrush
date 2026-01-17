@@ -20,42 +20,14 @@
 .mascot {
     width: 100px;
     height: 100px;
-    background: var(--color-primary);
-    border-radius: 50%;
+    /** background: var(--color-primary); Remove background for image */
+    /** border-radius: 50%; Remove border-radius */
     margin: 0 auto 30px;
     position: relative;
     animation: bounce 1s infinite alternate cubic-bezier(0.5, 0.05, 0.1, 0.3);
-    box-shadow: var(--shadow-md);
-}
-
-.eyeLeft,
-.eyeRight {
-    position: absolute;
-    top: 35%;
-    width: 12px;
-    height: 12px;
-    background: black;
-    border-radius: 50%;
-    animation: blink 3s infinite;
-}
-
-.eyeLeft {
-    left: 25%;
-}
-
-.eyeRight {
-    right: 25%;
-}
-
-.mouth {
-    position: absolute;
-    bottom: 25%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 10px;
-    border-bottom: 3px solid black;
-    border-radius: 0 0 10px 10px;
+    /** box-shadow: var(--shadow-md); Remove shadow */
+    object-fit: contain;
+    /* Ensure image fits well */
 }
 
 .message {
@@ -93,18 +65,7 @@
     }
 }
 
-@keyframes blink {
 
-    0%,
-    90%,
-    100% {
-        transform: scaleY(1);
-    }
-
-    95% {
-        transform: scaleY(0.1);
-    }
-}
 
 @keyframes slideUp {
     from {

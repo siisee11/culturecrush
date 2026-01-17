@@ -52,3 +52,119 @@
     color: var(--color-text-subtle);
     text-align: right;
 }
+
+.mappingSection {
+    margin-top: var(--spacing-md);
+    background: white;
+    border: 2px solid #E5E5E5;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+}
+
+.mappingHeader {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-subtle);
+}
+
+.mappingRow {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.mappingRow:last-child {
+    margin-bottom: 0;
+}
+
+.mappingLabel {
+    flex: 0 0 120px;
+}
+
+.mappingInput,
+.mappingInputOriginal {
+    padding: 10px 12px;
+    border: 2px solid #E5E5E5;
+    border-radius: var(--radius-lg);
+    font-size: 1rem;
+    outline: none;
+    transition: all var(--transition-fast);
+    color: var(--color-text);
+    background: white;
+    font-weight: 600;
+    font-family: inherit;
+    width: 100%;
+}
+
+.mappingInputOriginal {
+    background: #F7F5F0;
+    color: var(--color-text-subtle);
+    border-color: transparent;
+}
+
+.mappingInputOriginal:focus {
+    background: white;
+    border-color: var(--color-info);
+    color: var(--color-text);
+}
+
+.mappingInput:focus {
+    border-color: var(--color-info);
+}
+
+.arrow {
+    color: #E5E5E5;
+    font-weight: 900;
+    font-size: 1.2rem;
+    padding: 0 4px;
+}
+
+.removeBtn {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+    border: 2px solid transparent;
+    background: transparent;
+    color: #E5E5E5;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.removeBtn:hover {
+    background: #FF4B4B15;
+    color: var(--color-warning);
+}
+
+.addMappingBtn {
+    margin-top: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    border: 2px dashed #E5E5E5;
+    border-radius: var(--radius-lg);
+    background: transparent;
+    color: var(--color-text-subtle);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.addMappingBtn:hover {
+    border-color: var(--color-info);
+    background: #F0F4F8;
+    color: var(--color-info);
+}

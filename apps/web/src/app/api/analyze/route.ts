@@ -41,13 +41,14 @@ export async function POST(req: Request) {
         CORE VALUES: ${JSON.stringify(coreValues)}
         
         INSTRUCTIONS:
-        1. Parse the transcript into segments (Speaker + Text).
-        2. For each segment, score how well it aligns with EACH Core Value on a scale of -5 to 5.
+        1. Parse the ENTIRE transcript into segments (Speaker + Text). DO NOT skip any part of the conversation or summarize.
+        2. Return ALL segments in their original order, ensuring the full transcript is represented.
+        3. For each segment, score how well it aligns with EACH Core Value on a scale of -5 to 5.
            - 5: Strongly Aligns
            - 0: Neutral / Irrelevant
            - -5: Strongly Violates
-        3. Only return scores that are relevant (non-zero preferred, or significant).
-        4. Be strict but fair.
+        4. Only return scores that are relevant (non-zero preferred, or significant). If no relevance, return empty scores array.
+        5. Be strict but fair.
       `,
             prompt: transcript,
         });

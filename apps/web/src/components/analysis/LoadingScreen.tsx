@@ -23,12 +23,11 @@ export function LoadingScreen() {
     return (
         <div className={styles.overlay}>
             <div className={styles.content}>
-                <div className={styles.mascot}>
-                    {/* Simple CSS Mascot Animation */}
-                    <div className={styles.eyeLeft}></div>
-                    <div className={styles.eyeRight}></div>
-                    <div className={styles.mouth}></div>
-                </div>
+                <img
+                    src="/icon.png"
+                    alt="Loading..."
+                    className={styles.mascot}
+                />
 
                 <h2 className={styles.message} key={messageIdx}>
                     {LOADING_MESSAGES[messageIdx]}

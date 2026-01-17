@@ -4,6 +4,9 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Culture Crush - Culture Alignment Tool',
   description: 'Analyze meeting alignment with your core values.',
+  icons: {
+    icon: '/icon.png',
+  },
 };
 
 export default function RootLayout({

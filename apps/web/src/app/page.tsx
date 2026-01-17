@@ -9,9 +9,10 @@ import { AlignmentReport } from '@/components/results/AlignmentReport';
 // Import LoadingScreen via require to avoid circular dependency if needed needed, but standard import is better if no cycle.
 // Actually, let's use standard import.
 import { LoadingScreen } from '@/components/analysis/LoadingScreen';
+import { Button } from '@/components/ui/Button';
 
 export default function Home() {
-  const { coreValues, transcript, isCeoMode, toggleCeoMode, status, setStatus, setAnalysisResult } = useAppStore();
+  const { coreValues, transcript, speakerMappings, isCeoMode, toggleCeoMode, status, setStatus, setAnalysisResult } = useAppStore();
 
   useEffect(() => {
     (window as any).ceo = toggleCeoMode;
@@ -20,11 +21,34 @@ export default function Home() {
 
   const handleAnalyze = async () => {
     setStatus('analyzing');
+
+    // Apply speaker mappings to transcript using Regex
+    let processedTranscript = transcript;
+
+    // Sort by length (longest first) to avoid partial matches (e.g. replacing 'Speaker 1' inside 'Speaker 10')
+    const sortedMappings = [...speakerMappings].sort((a, b) => b.original.length - a.original.length);
+
+    sortedMappings.forEach(mapping => {
+      if (mapping.original.trim() && mapping.replacement.trim()) {
+        try {
+          // Escape special regex characters
+          const escapedOriginal = mapping.original.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          // Use word boundaries if it starts/ends with alphanumeric char, otherwise just global match
+          // We'll trust a simple global replace with case-insensitivity for now, but handle boundaries ideally.
+          // Simple version:
+          const regex = new RegExp(escapedOriginal, 'gi');
+          processedTranscript = processedTranscript.replace(regex, mapping.replacement);
+        } catch (e) {
+          console.warn("Invalid regex mapping", e);
+        }
+      }
+    });
+
     try {
       const res = await fetch('/api/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ transcript, coreValues }),
+        body: JSON.stringify({ transcript: processedTranscript, coreValues }),
       });
 
       const data = await res.json();
@@ -34,7 +58,7 @@ export default function Home() {
       }
 
       setAnalysisResult(data);
-      setStatus('done');
+      setStatus('reviewing');
     } catch (e: any) {
       console.error(e);
       setStatus('error');
@@ -46,12 +70,29 @@ export default function Home() {
     return <LoadingScreen />;
   }
 
+  // Step 1: Review Transcript
+  if (status === 'reviewing') {
+    return (
+      <main className="container" style={{ padding: '2rem 0' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+          <h1 style={{ color: 'var(--color-primary)' }}>Review Transcript</h1>
+          <Button variant="primary" onClick={() => setStatus('done')}>See Result &rarr;</Button>
+        </div>
+        <p style={{ marginBottom: '2rem', opacity: 0.7 }}>
+          Review the analyzed transcript below. Click "See Result" to view the Culture Report.
+        </p>
+        <TranscriptViewer />
+      </main>
+    )
+  }
+
+  // Step 2: Final Report
   if (status === 'done') {
     return (
       <main className="container" style={{ padding: '2rem 0' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
           <h1 style={{ color: 'var(--color-primary)' }}>Analysis Complete!</h1>
-          <button className="btn" onClick={() => setStatus('idle')} style={{ background: '#eee' }}>Start Over</button>
+          <Button variant="secondary" onClick={() => setStatus('idle')}>Start Over</Button>
         </div>
 
         <AlignmentReport />
@@ -79,14 +120,15 @@ export default function Home() {
         <TranscriptInput />
 
         <div style={{ marginTop: '2rem' }}>
-          <button
-            className="btn btn-primary"
-            style={{ width: '100%', fontSize: '1.2rem' }}
+          <Button
+            variant="primary"
+            fullWidth
+            size="large"
             disabled={coreValues.length === 0 || !transcript.trim()}
             onClick={handleAnalyze}
           >
             ANALYZE MEETING
-          </button>
+          </Button>
         </div>
       </div>
 

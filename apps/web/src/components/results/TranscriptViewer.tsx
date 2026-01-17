@@ -50,9 +50,12 @@ function TranscriptBubble({ segment, isCeoMode, allValues }: {
     const hasHighlight = isPositive || (isCeoMode && isNegative);
 
     const highlightStyle = hasHighlight ? {
-        borderColor: isPositive ? getColorForValue(bestMatch.value, allValues) : 'var(--color-warning)',
-        backgroundColor: isPositive ? `${getColorForValue(bestMatch.value, allValues)}10` : '#FF4B4B10', // 10% opacity
-    } : {};
+        '--bubble-border-color': isPositive ? getColorForValue(bestMatch.value, allValues) : 'var(--color-warning)',
+        '--bubble-bg-color': isPositive ? `${getColorForValue(bestMatch.value, allValues)}15` : '#FF4B4B10',
+    } as React.CSSProperties : {
+        '--bubble-border-color': '#E5E5E5', // Default grey
+        '--bubble-bg-color': '#FFFFFF', // Default white
+    } as React.CSSProperties;
 
     return (
         <div className={styles.bubbleWrapper}>

@@ -65,6 +65,30 @@ a {
   transform: translateY(4px);
 }
 
+.btn-secondary {
+  background-color: #E5E5E5;
+  color: var(--color-text);
+  box-shadow: 0 4px 0 #D4D4D4;
+}
+
+.btn-secondary:hover {
+  filter: brightness(0.95);
+}
+
+.btn-secondary:active {
+  box-shadow: 0 0 0 #D4D4D4;
+  transform: translateY(4px);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-large {
+  font-size: 1.2rem;
+  padding: var(--spacing-md) var(--spacing-xl);
+}
+
 .hidden {
   display: none;
 }

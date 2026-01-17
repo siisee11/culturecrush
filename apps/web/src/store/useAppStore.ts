@@ -21,12 +21,14 @@ interface AppState {
   coreValues: string[];
   transcript: string;
   analysisResult: AnalysisResult | null;
-  status: 'idle' | 'analyzing' | 'done' | 'error';
+  status: 'idle' | 'analyzing' | 'reviewing' | 'done' | 'error';
   isCeoMode: boolean;
+  speakerMappings: Array<{ original: string; replacement: string }>;
 
   // Actions
   setCoreValues: (values: string[]) => void;
   setTranscript: (text: string) => void;
+  setSpeakerMappings: (mappings: Array<{ original: string; replacement: string }>) => void;
   setAnalysisResult: (result: AnalysisResult | null) => void;
   setStatus: (status: AppState['status']) => void;
   toggleCeoMode: () => void;
@@ -36,12 +38,17 @@ interface AppState {
 export const useAppStore = create<AppState>((set) => ({
   coreValues: [],
   transcript: '',
+  speakerMappings: [
+    { original: 'Speaker 1', replacement: '' },
+    { original: 'Speaker 2', replacement: '' }
+  ],
   analysisResult: null,
   status: 'idle',
   isCeoMode: false,
 
   setCoreValues: (values) => set({ coreValues: values }),
   setTranscript: (transcript) => set({ transcript }),
+  setSpeakerMappings: (mappings) => set({ speakerMappings: mappings }),
   setAnalysisResult: (result) => set({ analysisResult: result }),
   setStatus: (status) => set({ status }),
   toggleCeoMode: () => set((state) => ({ isCeoMode: !state.isCeoMode })),
